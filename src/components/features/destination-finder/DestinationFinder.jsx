@@ -4,7 +4,7 @@ import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { Label } from '../../ui/label';
 import { Slider } from '../../ui/slider';
-import { Globe, Sun, Snowflake, Umbrella, DollarSign } from 'lucide-react';
+import { Globe, Sun, Snowflake, DollarSign } from 'lucide-react';
 
 const DestinationFinder = () => {
   const [preferences, setPreferences] = useState({
