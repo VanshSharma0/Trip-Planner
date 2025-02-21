@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 import { Button } from '../../ui/button';
 import { Clock, MapPin, DollarSign, Utensils, Car, Hotel } from 'lucide-react';
@@ -41,6 +42,20 @@ const ItineraryDay = ({ day, activities }) => {
   );
 };
 
+// Define prop types for ItineraryDay
+ItineraryDay.propTypes = {
+  day: PropTypes.number.isRequired,
+  activities: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.oneOf(['attraction', 'food', 'transport', 'accommodation']).isRequired,
+      name: PropTypes.string.isRequired,
+      time: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      cost: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
+
 const ItineraryBuilder = ({ tripData }) => {
   const [isCustomizing, setIsCustomizing] = useState(false);
 
@@ -81,6 +96,20 @@ const ItineraryBuilder = ({ tripData }) => {
       </div>
     </div>
   );
+};
+
+// Define prop types for ItineraryBuilder
+ItineraryBuilder.propTypes = {
+  tripData: PropTypes.shape({
+    days: PropTypes.arrayOf(
+      PropTypes.shape({
+        activities: PropTypes.array.isRequired,
+      })
+    ).isRequired,
+    totalCost: PropTypes.number.isRequired,
+    accommodation: PropTypes.string.isRequired,
+    transportation: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ItineraryBuilder;
