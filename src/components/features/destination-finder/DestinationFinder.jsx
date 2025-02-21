@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 import { Button } from '../../ui/button';
-import { Input } from '../../ui/input';
+// import { Input } from '../../ui/input';
 import { Label } from '../../ui/label';
 import { Slider } from '../../ui/slider';
 import { Globe, Sun, Snowflake, DollarSign } from 'lucide-react';
