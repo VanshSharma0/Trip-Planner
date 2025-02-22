@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
@@ -101,6 +102,10 @@ const AttractionExplorer = ({ latitude, longitude }) => {
       </CardContent>
     </Card>
   );
+};
+AttractionExplorer.propTypes = {
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
 };
 
 export default AttractionExplorer;
