@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 import { fetchWeatherForecast } from '../../api/weather'; // Assuming you'll have a weather API
 
@@ -68,6 +69,10 @@ const WeatherForecast = ({ latitude, longitude }) => {
       </CardContent>
     </Card>
   );
+};
+WeatherForecast.propTypes = {
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
 };
 
 export default WeatherForecast;
