@@ -1,18 +1,28 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from '../navbar/Navbar';
-import Sidebar from '../sidebar/Sidebar';
-import Footer from '../footer/Footer';
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom'; 
+import Navbar from './Navbar'; 
+import Footer from './Footer'; 
+import Sidebar from './Sidebar'; 
 
 const MainLayout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="flex h-screen bg-background">
-      <Sidebar />
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <Navbar />
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
-          <Outlet />
+    <div className="flex h-screen bg-gray-100"> 
+      {/* Sidebar (Mobile-first, hidden by default on larger screens) */}
+      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      {/* Main content area */}
+      <div className="flex-1 flex flex-col overflow-hidden"> 
+        <Navbar toggleSidebar={toggleSidebar} />
+        <main className="flex-1 overflow-y-auto p-6"> {/* Adjust padding as needed */}
+          <Outlet /> {/* This renders the child routes */}
         </main>
-        <Footer />
+        <Footer /> 
       </div>
     </div>
   );
