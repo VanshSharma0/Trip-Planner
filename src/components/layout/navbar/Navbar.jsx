@@ -1,5 +1,6 @@
 // src/components/layout/Navbar.jsx
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'; // Use Link for navigation within your React app
 
 const Navbar = ({ toggleSidebar }) => {
@@ -82,6 +83,9 @@ const Navbar = ({ toggleSidebar }) => {
       </div>
     </nav>
   );
+};
+Navbar.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default Navbar;
