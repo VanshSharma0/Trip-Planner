@@ -9,13 +9,16 @@ import { Label } from "@/components/ui/label";
 const Form = FormProvider;
 
 // FormFieldContext to store the field name
-const FormFieldContext = React.createContext({});
+const FormFieldContext = React.createContext<{ name?: string } | null>(null);
+
+// FormItemContext for managing form item ID
+const FormItemContext = React.createContext<{ id?: string } | null>(null);
 
 // FormField component
-const FormField = ({ ...props }) => {
+const FormField = ({ name, ...props }) => {
   return (
-    <FormFieldContext.Provider value={{ name: props.name }}>
-      <Controller {...props} />
+    <FormFieldContext.Provider value={{ name }}>
+      <Controller name={name} {...props} />
     </FormFieldContext.Provider>
   );
 };
@@ -26,24 +29,21 @@ const useFormField = () => {
   const itemContext = React.useContext(FormItemContext);
   const { getFieldState, formState } = useFormContext();
 
-  if (!fieldContext) {
-    throw new Error("useFormField should be used within <FormField>");
+  if (!fieldContext || !fieldContext.name) {
+    throw new Error("useFormField must be used within a <FormField>");
   }
 
   const fieldState = getFieldState(fieldContext.name, formState);
 
   return {
-    id: itemContext.id,
+    id: itemContext?.id ?? "",
     name: fieldContext.name,
-    formItemId: `${itemContext.id}-form-item`,
-    formDescriptionId: `${itemContext.id}-form-item-description`,
-    formMessageId: `${itemContext.id}-form-item-message`,
+    formItemId: itemContext?.id ? `${itemContext.id}-form-item` : "",
+    formDescriptionId: itemContext?.id ? `${itemContext.id}-form-item-description` : "",
+    formMessageId: itemContext?.id ? `${itemContext.id}-form-item-message` : "",
     ...fieldState,
   };
 };
-
-// FormItemContext for managing form item ID
-const FormItemContext = React.createContext({});
 
 // FormItem component (wrapper for form fields)
 const FormItem = React.forwardRef(({ className, ...props }, ref) => {
