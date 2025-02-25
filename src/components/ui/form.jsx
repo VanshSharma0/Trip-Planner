@@ -9,7 +9,10 @@ import { Label } from "@/components/ui/label";
 const Form = FormProvider;
 
 // FormFieldContext to store the field name
-const FormFieldContext = React.createContext({});
+const FormFieldContext = React.createContext({ name: "" });
+
+// FormItemContext for managing form item ID
+const FormItemContext = React.createContext({ id: "" });
 
 // FormField component
 const FormField = ({ ...props }) => {
@@ -41,9 +44,6 @@ const useFormField = () => {
     ...fieldState,
   };
 };
-
-// FormItemContext for managing form item ID
-const FormItemContext = React.createContext({});
 
 // FormItem component (wrapper for form fields)
 const FormItem = React.forwardRef(({ className, ...props }, ref) => {
@@ -82,7 +82,11 @@ const FormControl = React.forwardRef(({ ...props }, ref) => {
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId}
+      aria-describedby={
+        error
+          ? `${formDescriptionId} ${formMessageId}`
+          : formDescriptionId
+      }
       aria-invalid={!!error}
       {...props}
     />
