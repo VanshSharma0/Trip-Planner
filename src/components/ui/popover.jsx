@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
+import PropTypes from 'prop-types';
 
 import { cn } from "@/lib/utils"
 
@@ -10,8 +11,6 @@ const Popover = PopoverPrimitive.Root
 const PopoverTrigger = PopoverPrimitive.Trigger
 
 const PopoverAnchor = PopoverPrimitive.Anchor
-
-import PropTypes from 'prop-types';
 
 const PopoverContent = React.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
   <PopoverPrimitive.Portal>
@@ -24,14 +23,15 @@ const PopoverContent = React.forwardRef(({ className, align = "center", sideOffs
         className
       )}
       {...props} />
-PopoverContent.displayName = "PopoverContent"
+  </PopoverPrimitive.Portal>
+))
 
 PopoverContent.propTypes = {
   className: PropTypes.string,
   align: PropTypes.string,
   sideOffset: PropTypes.number,
 };
-))
+
 PopoverContent.displayName = "PopoverContent"
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }
