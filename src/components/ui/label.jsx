@@ -13,11 +13,12 @@ const labelVariants = cva(
 
 const Label = React.forwardRef(({ className, ...props }, ref) => (
   <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />
-Label.displayName = "Label"
+))
 
 Label.propTypes = {
   className: PropTypes.string,
 };
+
 Label.displayName = "Label"
 
 export { Label }
