@@ -11,6 +11,8 @@ const PopoverTrigger = PopoverPrimitive.Trigger
 
 const PopoverAnchor = PopoverPrimitive.Anchor
 
+import PropTypes from 'prop-types';
+
 const PopoverContent = React.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
@@ -22,7 +24,13 @@ const PopoverContent = React.forwardRef(({ className, align = "center", sideOffs
         className
       )}
       {...props} />
-  </PopoverPrimitive.Portal>
+PopoverContent.displayName = "PopoverContent"
+
+PopoverContent.propTypes = {
+  className: PropTypes.string,
+  align: PropTypes.string,
+  sideOffset: PropTypes.number,
+};
 ))
 PopoverContent.displayName = "PopoverContent"
 
